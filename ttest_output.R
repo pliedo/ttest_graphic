@@ -1,6 +1,9 @@
-pacman::p_load(gridExtra,grid, broom, dplyr)
+pacman::p_load(gridExtra,grid,broom, dplyr)
 
 ttest_graphic <- function(x1,x2) {
+  
+  x1_name <- deparse(substitute(x1))
+  x2_name <- deparse(substitute(x2))
   
   t_test <- t.test(x1, x2)
   tidy_ttest <- tidy(t_test)
@@ -11,8 +14,8 @@ ttest_graphic <- function(x1,x2) {
                                       estimate,
                                       conf.low,
                                       conf.high)%>%
-    rename(!!paste(deparse(substitute(x1)), "mean") := estimate1,
-           !!paste(deparse(substitute(x2)), "mean") := estimate2)
+    rename(!!paste(x1_name, "mean") := estimate1,
+           !!paste(x2_name, "mean") := estimate2)
   
   
   output_table <-round(output_table,2)
@@ -20,11 +23,6 @@ ttest_graphic <- function(x1,x2) {
   output_table <- output_table%>%
     mutate(conf.interval=paste("(",conf.low,",",conf.high,")"))%>%
     select(-conf.low,-conf.high)
-     
-  
-  
-  
-  
   
   grob_table <- tableGrob(output_table,rows = NULL)
   
@@ -34,5 +32,4 @@ ttest_graphic <- function(x1,x2) {
   grid.newpage()
   grid.draw(grob_table)
   }
-
 
