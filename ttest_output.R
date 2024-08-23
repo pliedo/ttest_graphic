@@ -1,10 +1,6 @@
 pacman::p_load(gridExtra,broom)
 
-x1 <- rnorm(10, 8)
-x2 <- rnorm(10, 10)
-
-
-t_test_graphic <- function(x1,x2) {
+ttest_graphic <- function(x1,x2) {
   
   t_test <- t.test(x1, x2)
   tidy_ttest <- tidy(t_test)
@@ -39,4 +35,4 @@ t_test_graphic <- function(x1,x2) {
   grid.draw(grob_table)
   }
 
-t_test_graphic(x1,x2)
+
