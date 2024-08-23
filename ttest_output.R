@@ -1,4 +1,4 @@
-pacman::p_load(gridExtra,broom, dplyr)
+pacman::p_load(gridExtra,grid, broom, dplyr)
 
 ttest_graphic <- function(x1,x2) {
   
