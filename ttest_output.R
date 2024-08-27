@@ -19,6 +19,8 @@ ttest_graphic <- function(x1,x2) {
   
   
   output_table <-round(output_table,2)
+
+  output_table$p.value<-output_table$p.value+0.00
   
   output_table <- output_table%>%
     mutate(conf.interval=paste("(",conf.low,",",conf.high,")"))%>%
