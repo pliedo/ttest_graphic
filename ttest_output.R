@@ -1,4 +1,4 @@
-pacman::p_load(gridExtra,grid,broom, dplyr)
+pacman::p_load(gridExtra,grid,broom, dplyr, scales)
 
 ttest_graphic <- function(x1,x2) {
   
@@ -20,7 +20,7 @@ ttest_graphic <- function(x1,x2) {
   
   output_table <-round(output_table,2)
 
-  output_table$p.value<-output_table$p.value+0.00
+  output_table$p.value<-comma( output_table$p.value, accuracy = 0.01)
   
   output_table <- output_table%>%
     mutate(conf.interval=paste("(",conf.low,",",conf.high,")"))%>%
